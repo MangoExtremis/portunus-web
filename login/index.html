@@ -107,12 +107,13 @@
 
       if ((username === secretUsername1 && password === secretPassword1) || (username === secretUsername2 && password === secretPassword2)) {
         if (agreeCheckbox) {
-          document.getElementById("message").innerHTML = "<p class='success-message'>Login successful, you will be redirected in a few seconds.";
+          document.getElementById("message").innerHTML = "<p class='error-message'>An internal error occured.";
+          //document.getElementById("message").innerHTML = "<p class='success-message'>Login successful, you will be redirected in a few seconds.";
         } else {
           document.getElementById("message").innerHTML = "<p class='error-message'>Please confirm you are not a robot.</p>";
         }
       } else {
-        document.getElementById("message").innerHTML = "<p class='error-message'>Incorrect login information.</p>";
+        document.getElementById("message").innerHTML = "<p class='error-message'>An internal error occured.</p>";
       }
     });
 </script>
