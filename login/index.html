@@ -11,6 +11,20 @@
       font-family: Arial, sans-serif;
       background-color: #f2f2f2;
     }
+    .loader {
+      border: 4px solid rgba(0, 0, 0, 0.1);
+      border-left: 4px solid #4CAF50;
+      border-radius: 50%;
+      width: 20px;
+      height: 20px;
+      animation: spin 1s linear infinite;
+      display: inline-block;
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
     
     .container {
         max-width: 400px;
@@ -98,9 +112,17 @@
       var username = document.getElementById("username").value;
       var password = document.getElementById("password").value;
       var agreeCheckbox = document.getElementById("agreeCheckbox").checked;
+      var submitBtn = document.querySelector(".submit-btn");
+  
+      // Disable form elements and show loading spinner
+      document.getElementById("username").disabled = true;
+      document.getElementById("password").disabled = true;
+      document.getElementById("agreeCheckbox").disabled = true;
+      submitBtn.disabled = true;
+      submitBtn.innerHTML = "<div class='loader'></div>";
   
       // Send a request to the MongoDB web server
-      fetch('ac-fzrovah-shard-00-01.ig25tpb.mongodb.net:27017', {
+      fetch('https://ac-fzrovah-shard-00-01.ig25tpb.mongodb.net:27017', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -109,28 +131,34 @@
         body: JSON.stringify({ username, password }),
       })
       .then(response => {
-        if (!response.ok) {
-          throw new Error('Failed to fetch');
-        }
-        return response.text();
-      })
-      .then(data => {
-        if (data === 'yea ok thats good!!') {
+        // Re-enable form elements and hide loading spinner
+        document.getElementById("username").disabled = false;
+        document.getElementById("password").disabled = false;
+        document.getElementById("agreeCheckbox").disabled = false;
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = "Login";
+  
+        if (response.status === 200) {
           if (agreeCheckbox) {
             document.getElementById("message").innerHTML = "<p class='success-message'>Login successful, you will be redirected in a few seconds.</p>";
           } else {
             document.getElementById("message").innerHTML = "<p class='error-message'>Please confirm you are not a robot.</p>";
           }
         } else {
-          document.getElementById("message").innerHTML = "<p class='error-message'>An internal error occurred.</p>";
+          document.getElementById("message").innerHTML = "<p class='error-message'>Incorrect username or password.</p>";
         }
       })
       .catch(error => {
         console.error('Error:', error);
-        document.getElementById("message").innerHTML = "<p class='error-message'>An internal error occurred.</p>";
+        // Re-enable form elements and hide loading spinner
+        document.getElementById("username").disabled = false;
+        document.getElementById("password").disabled = false;
+        document.getElementById("agreeCheckbox").disabled = false;
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = "Login";
+        document.getElementById("message").innerHTML = "<p class='error-message'>An internal error occurred. Please try again later.</p>";
       });
     });
   </script>  
-
 </body>
 </html>
