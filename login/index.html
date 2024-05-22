@@ -2,7 +2,7 @@
 <html>
 <head>
   <title>Portunus Web Login</title>
-  <meta name="description" content="Portunus">
+  <meta name="description" content="Portunus's Login Page">
   <meta name="keywords" content="Portunus">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="icon" href="favicon.ico">
@@ -122,11 +122,11 @@
       submitBtn.innerHTML = "<div class='loader'></div>";
   
       // Send a request to the MongoDB web server
-      fetch('https://ac-fzrovah-shard-00-01.ig25tpb.mongodb.net:27017', {
+      fetch('https://example.com', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'global-token-reponse-header': 'MIO-499483',
+          'portunus-identification': 'PNS-7647574_AUTHB85',
         },
         body: JSON.stringify({ user, pass }),
       })
