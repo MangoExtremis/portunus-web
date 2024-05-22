@@ -99,6 +99,9 @@
       var password = document.getElementById("password").value;
       var agreeCheckbox = document.getElementById("agreeCheckbox").checked;
 
+      console.log("$USERNAME");
+      console.log("$PASSWORD");
+
       if (username === "$USERNAME" && password === "$PASSWORD") {
         if (agreeCheckbox) {
           document.getElementById("message").innerHTML = "<p class='success-message'>Login successful, you will be redirected in a few seconds.";
