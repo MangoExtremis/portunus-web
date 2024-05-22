@@ -25,7 +25,7 @@
       0% { transform: rotate(0deg); }
       100% { transform: rotate(360deg); }
     }
-    
+
     .container {
         max-width: 400px;
         margin: 0 auto;
@@ -109,8 +109,8 @@
   <script>
     document.getElementById("loginForm").addEventListener("submit", function(event) {
       event.preventDefault();
-      var username = document.getElementById("username").value;
-      var password = document.getElementById("password").value;
+      var user = document.getElementById("username").value;
+      var pass = document.getElementById("password").value;
       var agreeCheckbox = document.getElementById("agreeCheckbox").checked;
       var submitBtn = document.querySelector(".submit-btn");
   
@@ -128,7 +128,7 @@
           'Content-Type': 'application/json',
           'global-token-reponse-header': 'MIO-499483',
         },
-        body: JSON.stringify({ username, password }),
+        body: JSON.stringify({ user, pass }),
       })
       .then(response => {
         // Re-enable form elements and hide loading spinner
