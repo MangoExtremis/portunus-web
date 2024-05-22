@@ -100,10 +100,10 @@
       var agreeCheckbox = document.getElementById("agreeCheckbox").checked;
 
       // Get the actual secret values from the environment
-      var secretUsername1 = "$USERNAME";
-      var secretPassword1 = "$PASSWORD";
-      var secretUsername2 = "$USERNAME2";
-      var secretPassword2 = "$PASSWORD2";
+      var secretUsername1 = $USERNAME
+      var secretPassword1 = $PASSWORD
+      var secretUsername2 = $USERNAME2
+      var secretPassword2 = $PASSWORD2
 
       if ((username === secretUsername1 && password === secretPassword1) || (username === secretUsername2 && password === secretPassword2)) {
         if (agreeCheckbox) {
