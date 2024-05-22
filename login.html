@@ -46,6 +46,11 @@
       border-radius: 4px;
     }
     
+    .form-group .checkbox-label {
+      font-size: 0.9em;
+      margin-bottom: 5px;
+    }
+    
     .error-message {
       color: red;
       margin-top: 10px;
@@ -79,6 +84,10 @@
         <label for="password">PASSWORD</label>
         <input type="password" id="password" name="password" required autocomplete="current-password">
       </div>
+      <div class="form-group">
+        <input type="checkbox" id="agreeCheckbox" name="agreeCheckbox" required>
+        <label for="agreeCheckbox" class="checkbox-label">I am not a beep boopin robot!</label>
+      </div>
       <div id="message" class="error-message"></div>
       <button type="submit" class="submit-btn">Login</button>
     </form>
@@ -89,11 +98,12 @@
       event.preventDefault();
       var username = document.getElementById("username").value;
       var password = document.getElementById("password").value;
+      var agreeCheckbox = document.getElementById("agreeCheckbox").checked;
 
-      if (username === "$USERNAME" && password === "$PASSWORD") {
+      if (username === "$USERNAME" && password === "$PASSWORD" && agreeCheckbox) {
         document.getElementById("message").innerHTML = "<p class='success-message'>Login successful, you will be redirected in a few seconds.";
       } else {
-        document.getElementById("message").innerHTML = "<p class='error-message'>Invalid username or password.</p>";
+        document.getElementById("message").innerHTML = "<p class='error-message'>Incorrect login information. Ensure all fields are filled out and correct.</p>";
       }
     });
   </script>
