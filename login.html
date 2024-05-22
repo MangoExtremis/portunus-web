@@ -73,11 +73,11 @@
     <form id="loginForm">
       <div class="form-group">
         <label for="username">USERNAME</label>
-        <input type="text" id="username" name="username" required>
+        <input type="text" id="username" name="username" required autocomplete="username">
       </div>
       <div class="form-group">
         <label for="password">PASSWORD</label>
-        <input type="password" id="password" name="password" required>
+        <input type="password" id="password" name="password" required autocomplete="current-password">
       </div>
       <div id="message" class="error-message"></div>
       <button type="submit" class="submit-btn">Login</button>
@@ -89,8 +89,7 @@
       event.preventDefault();
       var username = document.getElementById("username").value;
       var password = document.getElementById("password").value;
-      
-      // Perform verification here (replace with your own logic)
+
       if (username === "$USERNAME" && password === "$PASSWORD") {
         document.getElementById("message").innerHTML = "<p class='success-message'>Login successful, you will be redirected in a few seconds.";
       } else {
