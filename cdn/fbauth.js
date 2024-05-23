@@ -22,11 +22,32 @@ const firebaseConfig = {
       .then((result) => {
         // User signed in
         window.location.replace("http://portunus.run.place/home");
+        document.getElementById("message").innerHTML = "<p class='success-message'>Login completed. Please wait.</p>";
         console.log(result.user);
+
+        // Animation
+        var user = document.getElementById("email").value;
+        var pass = document.getElementById("password").value;
+        var agreeCheckbox = document.getElementById("agreeCheckbox").checked;
+        var submitBtn = document.querySelector(".submit-btn");
+
+        document.getElementById("email").disabled = true;
+        document.getElementById("password").disabled = true;
+        document.getElementById("agreeCheckbox").disabled = true;
+        submitBtn.disabled = true;
+        submitBtn.innerHTML = "<div class='loader'></div>";
+        document.getElementById("message").innerHTML = "<p class='warning-message'></p>";
       })
       .catch((error) => {
         console.error(error);
+
+        // Animation
         document.getElementById("message").innerHTML = "<p class='error-message'>Login failed. Please try again.</p>";
+        document.getElementById("email").disabled = false;
+        document.getElementById("password").disabled = false;
+        document.getElementById("agreeCheckbox").disabled = false;
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = "Login";
       });
   });
   
