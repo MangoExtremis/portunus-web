@@ -150,11 +150,13 @@
       submitBtn.disabled = true;
       submitBtn.innerHTML = "<div class='loader'></div>";
       document.getElementById("message").innerHTML = "<p class='error-message'></p>";
+      document.getElementById("message").innerHTML = "<p class='warning-message'>Login's are currently disabled at this time.</p>";
   
       // Add a delay before showing the message
       setTimeout(function() {
 
         document.getElementById("message").innerHTML = "<p class='error-message'>An internal error occured.</p>";
+        document.getElementById("message").innerHTML = "<p class='warning-message'>Login's are currently disabled at this time.</p>";
   
         // Enable form elements and reset button
         document.getElementById("username").disabled = false;
