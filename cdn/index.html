@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html>
-
 <head>
     <title>Portunus - CDN</title>
     <meta name="description" content="CDN">
@@ -91,29 +90,23 @@
         }
     </style>
 </head>
-
 <body>
     <div class="background" id="background"></div>
     <div class="container">
         <h1>Portunus - Content Delivery Network</h1>
         <div>
-
-            <body>This is Portunus's Content Delivery Network. You may view all files assigned to it here.</body>
+            <p>This is Portunus's Content Delivery Network. You may view all files assigned to it here.</p>
         </div>
         <ul id="fileList"></ul>
     </div>
 
     <script>
-        fetch('cdn/')
-            .then(response => response.text())
-            .then(text => {
-                const parser = new DOMParser();
-                const html = parser.parseFromString(text, 'text/html');
-                const links = html.querySelectorAll('a');
+        fetch('list_files.php')
+            .then(response => response.json())
+            .then(files => {
                 const fileList = document.getElementById('fileList');
-
-                links.forEach(link => {
-                    const fileName = link.getAttribute('href');
+                files.forEach(file => {
+                    const fileName = file.replace('cdn/', '');
                     const listItem = document.createElement('li');
                     const anchor = document.createElement('a');
                     anchor.setAttribute('href', `cdn/${fileName}`);
@@ -132,5 +125,4 @@
         });
     </script>
 </body>
-
 </html>
