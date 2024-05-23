@@ -78,6 +78,11 @@
       color: green;
       margin-top: 10px;
     }
+
+    .warning-message {
+      color: yellow;
+      margin-top: 10px;
+    }
     
     .submit-btn {
       width: 100%;
@@ -122,8 +127,13 @@
       </div>
       <div id="message" class="error-message"></div>
       <button type="submit" class="submit-btn">Login</button>
+      <div id="message" class="warning-message"></div>
     </form>
   </div>
+
+  <script>
+    document.getElementById("message").innerHTML = "<p class='warning-message'>Login's are currently disabled at this time.</p>";
+  </script>
 
   <script>
     document.getElementById("loginForm").addEventListener("submit", function(event) {
@@ -151,7 +161,7 @@
         document.getElementById("agreeCheckbox").disabled = false;
         submitBtn.disabled = false;
         submitBtn.innerHTML = "Login";
-      }, 3000); // 3000 milliseconds = 3 seconds
+      }, 10000);
     });
   
     // Mouse move background effect
