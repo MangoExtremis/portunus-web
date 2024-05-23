@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html>
-
 <head>
   <title>Portunus Web Login</title>
   <meta name="description" content="Portunus's Login Page">
@@ -30,7 +29,6 @@
       0% {
         transform: rotate(0deg);
       }
-
       100% {
         transform: rotate(360deg);
       }
@@ -135,44 +133,16 @@
         <label for="agreeCheckbox" class="checkbox-label">I am not a robot.</label>
       </div>
       <div id="message" class="error-message"></div>
-      <button id="login" type="login" class="submit-btn">Login</button>
+      <button id="login" type="button" class="submit-btn">Login</button>
       <div id="message" class="warning-message"></div>
     </form>
   </div>
 
+  <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-auth.js"></script>
+  <script src="/cdn/fbauth.js"></script>
   <script>
-    document.getElementById("message").innerHTML = "<p class='warning-message'>Login's are currently disabled at this time.</p>";
-  </script>
-
-  <script>
-    document.getElementById("loginForm").addEventListener("login", function (event) {
-      event.preventDefault();
-      var user = document.getElementById("email").value;
-      var pass = document.getElementById("password").value;
-      var agreeCheckbox = document.getElementById("agreeCheckbox").checked;
-      var submitBtn = document.querySelector(".submit-btn");
-
-      // Disable form elements and show loading spinner
-      document.getElementById("email").disabled = true;
-      document.getElementById("password").disabled = true;
-      document.getElementById("agreeCheckbox").disabled = true;
-      submitBtn.disabled = true;
-      submitBtn.innerHTML = "<div class='loader'></div>";
-      document.getElementById("message").innerHTML = "<p class='error-message'></p>";
-
-      // Add a delay before showing the message
-      setTimeout(function () {
-
-        document.getElementById("message").innerHTML = "<p class='error-message'>An internal error occured. Login timeout exceeded.</p>";
-
-        // Enable form elements and reset button
-        document.getElementById("email").disabled = false;
-        document.getElementById("password").disabled = false;
-        document.getElementById("agreeCheckbox").disabled = false;
-        submitBtn.disabled = false;
-        submitBtn.innerHTML = "Login";
-      }, 4000);
-    });
+   //document.getElementById("message").innerHTML = "<p class='warning-message'>Logins are currently disabled at this time.</p>";
 
     // Mouse move background effect
     document.addEventListener('mousemove', function (e) {
@@ -182,32 +152,5 @@
       background.style.transform = `translate(${moveX}px, ${moveY}px) scale(1.1)`;
     });
   </script>
-
-<script src="/cdn/fbauth.js"></script>
-
-  <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-auth.js"></script>
-
-  <script type="module">
-    // Import the functions you need from the SDKs you need
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.1/firebase-app.js";
-    // TODO: Add SDKs for Firebase products that you want to use
-    // https://firebase.google.com/docs/web/setup#available-libraries
-
-    // Your web app's Firebase configuration
-    const firebaseConfig = {
-      apiKey: "AIzaSyB6bb3PcRQmnfGkx9ef00KMJ9XsIi57170",
-      authDomain: "portunus-web.firebaseapp.com",
-      projectId: "portunus-web",
-      storageBucket: "portunus-web.appspot.com",
-      messagingSenderId: "858044349547",
-      appId: "1:858044349547:web:31414f32c015176994052e"
-    };
-
-    // Initialize Firebase
-    const app = initializeApp(firebaseConfig);
-  </script>
-
 </body>
-
 </html>
