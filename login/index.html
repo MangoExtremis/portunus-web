@@ -149,6 +149,7 @@
       document.getElementById("agreeCheckbox").disabled = true;
       submitBtn.disabled = true;
       submitBtn.innerHTML = "<div class='loader'></div>";
+      document.getElementById("message").innerHTML = "<p class='error-message'></p>";
   
       // Add a delay before showing the message
       setTimeout(function() {
