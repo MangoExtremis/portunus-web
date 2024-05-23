@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Portunus - CDN</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f2f2f2;
+      margin: 0;
+      padding: 20px;
+    }
+    h1 {
+      text-align: center;
+    }
+    ul {
+      list-style-type: none;
+      padding: 0;
+    }
+    li {
+      margin-bottom: 5px;
+    }
+    a {
+      color: #333;
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <h1>Portunus - Content Delivery Network</h1>
+  <ul id="fileList"></ul>
+
+  <script>
+    fetch('cdn/')
+      .then(response => response.text())
+      .then(text => {
+        const parser = new DOMParser();
+        const html = parser.parseFromString(text, 'text/html');
+        const links = html.querySelectorAll('a');
+        const fileList = document.getElementById('fileList');
+
+        links.forEach(link => {
+          const fileName = link.getAttribute('href');
+          const listItem = document.createElement('li');
+          const anchor = document.createElement('a');
+          anchor.setAttribute('href', `cdn/${fileName}`);
+          anchor.textContent = fileName;
+          listItem.appendChild(anchor);
+          fileList.appendChild(listItem);
+        });
+      });
+  </script>
+</body>
+</html>
