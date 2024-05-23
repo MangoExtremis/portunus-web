@@ -78,7 +78,7 @@ auth.onAuthStateChanged((user) => {
 const logoutButton = document.getElementById('logout');
 if (logoutButton) {
     logoutButton.addEventListener('click', () => {
-        signOut(auth).then(() => {
+        firebase.auth().signOut().then(function() {
             console.log('User signed out.');
         }).catch((error) => {
             console.error(error);
