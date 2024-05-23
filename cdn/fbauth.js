@@ -1,3 +1,6 @@
+const { initializeApp } = firebase;
+const { getAuth, signInWithPopup, GoogleAuthProvider, signOut } = firebase.auth;
+
 // Your web app's Firebase configuration
 const firebaseConfig = {
     apiKey: "AIzaSyB6bb3PcRQmnfGkx9ef00KMJ9XsIi57170",
