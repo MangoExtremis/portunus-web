@@ -16,6 +16,7 @@ firebase.initializeApp(firebaseConfig);
 const auth = firebase.auth();
 
 // Sign in with email/password
+const loginButton = document.getElementById('login');
 if (loginButton) {
     loginButton.addEventListener('click', () => {
         const email = document.getElementById("email").value;
