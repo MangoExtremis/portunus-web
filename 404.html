@@ -98,8 +98,8 @@
   <script>
     document.addEventListener('mousemove', function(e) {
       const background = document.getElementById('background');
-      const moveX = (e.clientX / window.innerWidth) * 30 - 15;
-      const moveY = (e.clientY / window.innerHeight) * 30 - 15;
+      const moveX = (e.clientX / window.innerWidth) * 15 - 30;
+      const moveY = (e.clientY / window.innerHeight) * 15 - 30;
       background.style.transform = `translate(${moveX}px, ${moveY}px) scale(1.1)`;
     });
   </script>  
