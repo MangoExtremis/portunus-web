@@ -91,29 +91,23 @@
     </style>
 </head>
 <body>
-    <script>
-        fetch('/cdn/')
-            .then(response => response.json())
-            .then(files => {
-                const fileList = document.getElementById('fileList');
-                files.forEach(file => {
-                    const fileName = file.replace('cdn/', '');
-                    const listItem = document.createElement('li');
-                    const anchor = document.createElement('a');
-                    anchor.setAttribute('href', `cdn/${fileName}`);
-                    anchor.textContent = fileName;
-                    listItem.appendChild(anchor);
-                    fileList.appendChild(listItem);
-                });
-            });
-    </script>
     <div class="background" id="background"></div>
     <div class="container">
         <h1>Portunus - Content Delivery Network</h1>
         <div>
             <p>This is Portunus's Content Delivery Network. You may view all files assigned to it here.</p>
         </div>
-        <ul id="fileList"></ul>
+        <div><a href="https://portunus.run.place/cdn/banner.jpg">banner.jpg</a></div>
+        <div><a href="https://portunus.run.place/cdn/crack.mp4">crack.mp4</a></div>
+        <div><a href="https://portunus.run.place/cdn/doodlemc.mp3">doodlemc.mp3</a></div>
+        <div><a href="https://portunus.run.place/cdn/duck.png">duck.png</a></div>
+        <div><a href="https://portunus.run.place/cdn/fishy.gif">fishy.gif</a></div>
+        <div><a href="https://portunus.run.place/cdn/Forgotten%20Planet.ogg">Forgotten%20Planet.ogg</a></div>
+        <div><a href="https://portunus.run.place/cdn/Sigma.mp3">Sigma.mp3</a></div>
+        <div><a href="https://portunus.run.place/cdn/youlittle.mp4">youlittle.mp4</a></div>
+        <div>
+            <p>&copy; Portunus 2024. All rights reserved.</p>
+        </div>
     </div>
     <script>
         document.addEventListener('mousemove', function (e) {
