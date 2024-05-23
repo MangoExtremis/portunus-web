@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
   <title>Portunus Web Login</title>
   <meta name="description" content="Portunus's Login Page">
@@ -14,6 +15,7 @@
       padding: 0;
       overflow: hidden;
     }
+
     .loader {
       border: 4px solid rgba(0, 0, 0, 0.1);
       border-left: 4px solid #4CAF50;
@@ -25,8 +27,13 @@
     }
 
     @keyframes spin {
-      0% { transform: rotate(0deg); }
-      100% { transform: rotate(360deg); }
+      0% {
+        transform: rotate(0deg);
+      }
+
+      100% {
+        transform: rotate(360deg);
+      }
     }
 
     .container {
@@ -42,38 +49,38 @@
       transform: translate(-50%, -50%);
       text-align: center;
     }
-    
+
     h2 {
       text-align: center;
     }
-    
+
     .form-group {
       margin-bottom: 20px;
     }
-    
-    .form-group label, 
+
+    .form-group label,
     .form-group input,
     .form-group .checkbox-label {
       display: block;
       margin: 0 auto;
       text-align: center;
     }
-    
+
     .form-group input[type="checkbox"] {
       display: inline-block;
       margin-right: 5px;
     }
-    
+
     .form-group .checkbox-label {
       display: inline-block;
       vertical-align: middle;
     }
-    
+
     .error-message {
       color: red;
       margin-top: 10px;
     }
-    
+
     .success-message {
       color: green;
       margin-top: 10px;
@@ -83,7 +90,7 @@
       color: orange;
       margin-top: 10px;
     }
-    
+
     .submit-btn {
       width: 100%;
       padding: 10px;
@@ -100,7 +107,8 @@
       left: 0;
       width: 100%;
       height: 100%;
-      background-image: url('/images/banner.jpg'); /* Replace with your background image URL */
+      background-image: url('/images/banner.jpg');
+      /* Replace with your background image URL */
       background-size: cover;
       background-position: center;
       z-index: -1;
@@ -108,14 +116,15 @@
     }
   </style>
 </head>
+
 <body>
   <div class="background" id="background"></div>
   <div class="container">
     <h1>Authentication Required</h1>
     <form id="loginForm">
       <div class="form-group">
-        <label for="username">USERNAME</label>
-        <input type="text" id="username" name="username" required autocomplete="username">
+        <label for="email">EMAIL</label>
+        <input type="text" id="email" name="email" required autocomplete="email">
       </div>
       <div class="form-group">
         <label for="password">PASSWORD</label>
@@ -126,7 +135,7 @@
         <label for="agreeCheckbox" class="checkbox-label">I am not a robot.</label>
       </div>
       <div id="message" class="error-message"></div>
-      <button type="submit" class="submit-btn">Login</button>
+      <button id="login" type="login" class="submit-btn">Login</button>
       <div id="message" class="warning-message"></div>
     </form>
   </div>
@@ -136,43 +145,69 @@
   </script>
 
   <script>
-    document.getElementById("loginForm").addEventListener("submit", function(event) {
+    document.getElementById("loginForm").addEventListener("login", function (event) {
       event.preventDefault();
-      var user = document.getElementById("username").value;
+      var user = document.getElementById("email").value;
       var pass = document.getElementById("password").value;
       var agreeCheckbox = document.getElementById("agreeCheckbox").checked;
       var submitBtn = document.querySelector(".submit-btn");
-  
+
       // Disable form elements and show loading spinner
-      document.getElementById("username").disabled = true;
+      document.getElementById("email").disabled = true;
       document.getElementById("password").disabled = true;
       document.getElementById("agreeCheckbox").disabled = true;
       submitBtn.disabled = true;
       submitBtn.innerHTML = "<div class='loader'></div>";
       document.getElementById("message").innerHTML = "<p class='error-message'></p>";
-  
-      // Add a delay before showing the message
-      setTimeout(function() {
 
-        document.getElementById("message").innerHTML = "<p class='error-message'>An internal error occured.</p>";
-  
+      // Add a delay before showing the message
+      setTimeout(function () {
+
+        document.getElementById("message").innerHTML = "<p class='error-message'>An internal error occured. Login timeout exceeded.</p>";
+
         // Enable form elements and reset button
-        document.getElementById("username").disabled = false;
+        document.getElementById("email").disabled = false;
         document.getElementById("password").disabled = false;
         document.getElementById("agreeCheckbox").disabled = false;
         submitBtn.disabled = false;
         submitBtn.innerHTML = "Login";
-      }, 13453);
+      }, 4000);
     });
-  
+
     // Mouse move background effect
-    document.addEventListener('mousemove', function(e) {
+    document.addEventListener('mousemove', function (e) {
       const background = document.getElementById('background');
       const moveX = (e.clientX / window.innerWidth) * 15 - 30;
       const moveY = (e.clientY / window.innerHeight) * 15 - 30;
       background.style.transform = `translate(${moveX}px, ${moveY}px) scale(1.1)`;
     });
   </script>
-  
+
+<script src="/cdn/fbauth.js"></script>
+
+  <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-auth.js"></script>
+
+  <script type="module">
+    // Import the functions you need from the SDKs you need
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.1/firebase-app.js";
+    // TODO: Add SDKs for Firebase products that you want to use
+    // https://firebase.google.com/docs/web/setup#available-libraries
+
+    // Your web app's Firebase configuration
+    const firebaseConfig = {
+      apiKey: "AIzaSyB6bb3PcRQmnfGkx9ef00KMJ9XsIi57170",
+      authDomain: "portunus-web.firebaseapp.com",
+      projectId: "portunus-web",
+      storageBucket: "portunus-web.appspot.com",
+      messagingSenderId: "858044349547",
+      appId: "1:858044349547:web:31414f32c015176994052e"
+    };
+
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+  </script>
+
 </body>
+
 </html>
