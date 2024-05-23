@@ -16,45 +16,39 @@ firebase.initializeApp(firebaseConfig);
 const auth = firebase.auth();
 
 // Sign in with email/password
-document.getElementById('login').addEventListener('click', () => {
-    const email = document.getElementById("email").value;
-    const password = document.getElementById("password").value;
-
-    auth.signInWithEmailAndPassword(email, password)
-        .then((userCredential) => {
-            document.getElementById("message").innerHTML = "<p class='success-message'>Login completed. Please wait.</p>";
-            window.location.replace("http://portunus.run.place/home");
-            console.log(userCredential.user);
-
-            const submitBtn = document.getElementById("login")
-
-            document.getElementById("email").disabled = true;
-            document.getElementById("password").disabled = true;
-            document.getElementById("agreeCheckbox").disabled = true;
-            submitBtn.disabled = true;
-            submitBtn.innerHTML = "<div class='loader'></div>";
-            document.getElementById("message").innerHTML = "<p class='warning-message'></p>";
-        })
-        .catch((error) => {
-            console.error(error);
-
-            // Animation
-            document.getElementById("message").innerHTML = "<p class='error-message'>Login failed. Please try again.</p>";
-            document.getElementById("email").disabled = false;
-            document.getElementById("password").disabled = false;
-            document.getElementById("agreeCheckbox").disabled = false;
-            submitBtn.disabled = false;
-            submitBtn.innerHTML = "Login";
-        });
-});
-
-document.getElementById('logout').addEventListener('click', () => {
-    signOut(auth).then(() => {
-      console.log('User signed out.');
-    }).catch((error) => {
-      console.error(error);
+if (loginButton) {
+    loginButton.addEventListener('click', () => {
+        const email = document.getElementById("email").value;
+        const password = document.getElementById("password").value;
+    
+        auth.signInWithEmailAndPassword(email, password)
+            .then((userCredential) => {
+                document.getElementById("message").innerHTML = "<p class='success-message'>Login completed. Please wait.</p>";
+                window.location.replace("http://portunus.run.place/home");
+                console.log(userCredential.user);
+    
+                const submitBtn = document.getElementById("login")
+    
+                document.getElementById("email").disabled = true;
+                document.getElementById("password").disabled = true;
+                document.getElementById("agreeCheckbox").disabled = true;
+                submitBtn.disabled = true;
+                submitBtn.innerHTML = "<div class='loader'></div>";
+                document.getElementById("message").innerHTML = "<p class='warning-message'></p>";
+            })
+            .catch((error) => {
+                console.error(error);
+    
+                // Animation
+                document.getElementById("message").innerHTML = "<p class='error-message'>Login failed. Please try again.</p>";
+                document.getElementById("email").disabled = false;
+                document.getElementById("password").disabled = false;
+                document.getElementById("agreeCheckbox").disabled = false;
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = "Login";
+            });
     });
-});  
+}
 
 auth.onAuthStateChanged((user) => {
     if (user) {
@@ -72,7 +66,7 @@ auth.onAuthStateChanged((user) => {
         try {
             const myTag = document.getElementById('/RESTRICTED');
             if (myTag) {
-                window.location.replace("http://portunus.run.place/login");
+                window.location.replace("http://portunus.run.place/login");v
             }
         } catch (error) {
             console.log('Error:', error);
@@ -80,3 +74,13 @@ auth.onAuthStateChanged((user) => {
     }
 });
 
+const logoutButton = document.getElementById('logout');
+if (logoutButton) {
+    logoutButton.addEventListener('click', () => {
+        signOut(auth).then(() => {
+            console.log('User signed out.');
+        }).catch((error) => {
+            console.error(error);
+        });
+    });
+}
