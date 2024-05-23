@@ -93,7 +93,7 @@
       left: 0;
       width: 100%;
       height: 100%;
-      background-image: url('/images/banner.jpg');
+      background-image: url('your-background-image.jpg'); /* Replace with your background image URL */
       background-size: cover;
       background-position: center;
       z-index: -1;
@@ -180,9 +180,9 @@
     // Mouse move background effect
     document.addEventListener('mousemove', function(e) {
       const background = document.getElementById('background');
-      const x = (window.innerWidth - e.pageX * 0.1) / 100;
-      const y = (window.innerHeight - e.pageY * 0.1) / 100;
-      background.style.transform = `translate(${x}px, ${y}px) scale(1.1)`;
+      const moveX = (e.clientX / window.innerWidth) * 30 - 15;
+      const moveY = (e.clientY / window.innerHeight) * 30 - 15;
+      background.style.transform = `translate(${moveX}px, ${moveY}px) scale(1.1)`;
     });
   </script>  
 </body>
