@@ -1,56 +1,89 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-  <title>Portunus - CDN</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background-color: #f2f2f2;
-      margin: 0;
-      padding: 20px;
-    }
-    h1 {
-      text-align: center;
-    }
-    ul {
-      list-style-type: none;
-      padding: 0;
-    }
-    li {
-      margin-bottom: 5px;
-    }
-    a {
-      color: #333;
-      text-decoration: none;
-    }
-    a:hover {
-      text-decoration: underline;
-    }
-  </style>
+    <title>Portunus - CDN</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            margin: 0;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        li {
+            margin-bottom: 5px;
+        }
+
+        a {
+            color: #333;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        .background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('/images/banner.jpg');
+            /* Replace with your background image URL */
+            background-size: cover;
+            background-position: center;
+            z-index: -1;
+            transition: transform 0.1s ease-out;
+        }
+    </style>
 </head>
+
 <body>
-  <h1>Portunus - Content Delivery Network</h1>
-  <ul id="fileList"></ul>
+    <h1>Portunus - Content Delivery Network</h1>
+    <ul id="fileList"></ul>
 
-  <script>
-    fetch('cdn/')
-      .then(response => response.text())
-      .then(text => {
-        const parser = new DOMParser();
-        const html = parser.parseFromString(text, 'text/html');
-        const links = html.querySelectorAll('a');
-        const fileList = document.getElementById('fileList');
+    <div class="background" id="background"></div>
 
-        links.forEach(link => {
-          const fileName = link.getAttribute('href');
-          const listItem = document.createElement('li');
-          const anchor = document.createElement('a');
-          anchor.setAttribute('href', `cdn/${fileName}`);
-          anchor.textContent = fileName;
-          listItem.appendChild(anchor);
-          fileList.appendChild(listItem);
+    <script>
+        fetch('/cdn')
+            .then(response => response.text())
+            .then(text => {
+                const parser = new DOMParser();
+                const html = parser.parseFromString(text, 'text/html');
+                const links = html.querySelectorAll('a');
+                const fileList = document.getElementById('fileList');
+
+                links.forEach(link => {
+                    const fileName = link.getAttribute('href');
+                    const listItem = document.createElement('li');
+                    const anchor = document.createElement('a');
+                    anchor.setAttribute('href', `cdn/${fileName}`);
+                    anchor.textContent = fileName;
+                    listItem.appendChild(anchor);
+                    fileList.appendChild(listItem);
+                });
+            });
+    </script>
+
+    <script>
+        document.addEventListener('mousemove', function (e) {
+            const background = document.getElementById('background');
+            const moveX = (e.clientX / window.innerWidth) * 15 - 30;
+            const moveY = (e.clientY / window.innerHeight) * 15 - 30;
+            background.style.transform = `translate(${moveX}px, ${moveY}px) scale(1.1)`;
         });
-      });
-  </script>
+    </script>
 </body>
+
 </html>
