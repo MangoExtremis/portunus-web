@@ -53,6 +53,7 @@ if (loginButton) {
 
 auth.onAuthStateChanged((user) => {
     if (user) {
+        console.log(firebase.auth().currentUser)
         console.log('User is logged in:', user);
         try {
             const myTag = document.getElementById('login');
