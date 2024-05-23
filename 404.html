@@ -69,6 +69,11 @@
       vertical-align: middle;
     }
 
+    .warning-message {
+      color: orange;
+      margin-top: 10px;
+    }
+
     .background {
       position: absolute;
       top: 0;
@@ -87,9 +92,7 @@
   <div class="background" id="background"></div>
   <div class="container">
     <h1>Error 404</h1>
-    <div>
-        <body>The requested resource does not exist on the web-server.</body>
-    </div>
+        <div id="message" class="warning-message">The requested resource does not exist on the web-server.</div>
     <div>
         <body>If you believe this is an error, please contact an Administrator.</body>
     </div>
