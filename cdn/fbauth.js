@@ -27,7 +27,7 @@ document.getElementById('login').addEventListener('click', () => {
             console.log(userCredential.user);
 
             // Animation
-            var submitBtn = document.querySelector(".submit-btn");
+            const submitBtn = document.getElementById("login")
 
             document.getElementById("email").disabled = true;
             document.getElementById("password").disabled = true;
@@ -54,6 +54,17 @@ auth.onAuthStateChanged((user) => {
     if (user) {
         console.log('User is logged in:', user);
         // Additional logic if needed when the user is logged in
+
+        try {
+            const myTag = document.getElementById('myTag');
+            if (myTag) {
+                window.location.replace("http://portunus.run.place/home");
+            } else {
+                console.log('Tag not found');
+            }
+        } catch (error) {
+            console.log('Error finding tag:', error);
+        }        
     } else {
         console.log('No user is logged in');
         // Additional logic if needed when no user is logged in
