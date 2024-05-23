@@ -1,4 +1,4 @@
 <?php
-$files = glob('cdn/*');
+$files = glob('/cdn/*');
 echo json_encode($files);
 ?>
