@@ -11,6 +11,7 @@ const firebaseConfig = {
     appId: "1:858044349547:web:31414f32c015176994052e"
 };
 
+
 firebase.initializeApp(firebaseConfig);
 const auth = firebase.auth();
 
@@ -21,12 +22,10 @@ document.getElementById('login').addEventListener('click', () => {
 
     auth.signInWithEmailAndPassword(email, password)
         .then((userCredential) => {
-            // User signed in
-            window.location.replace("http://portunus.run.place/home");
             document.getElementById("message").innerHTML = "<p class='success-message'>Login completed. Please wait.</p>";
+            window.location.replace("http://portunus.run.place/home");
             console.log(userCredential.user);
 
-            // Animation
             const submitBtn = document.getElementById("login")
 
             document.getElementById("email").disabled = true;
@@ -49,25 +48,35 @@ document.getElementById('login').addEventListener('click', () => {
         });
 });
 
-// Listen for authentication state changes
+document.getElementById('logout').addEventListener('click', () => {
+    signOut(auth).then(() => {
+      console.log('User signed out.');
+    }).catch((error) => {
+      console.error(error);
+    });
+});  
+
 auth.onAuthStateChanged((user) => {
     if (user) {
         console.log('User is logged in:', user);
-        // Additional logic if needed when the user is logged in
-
         try {
-            const myTag = document.getElementById('myTag');
+            const myTag = document.getElementById('login');
             if (myTag) {
                 window.location.replace("http://portunus.run.place/home");
-            } else {
-                console.log('Tag not found');
             }
         } catch (error) {
-            console.log('Error finding tag:', error);
+            console.log('Error:', error);
         }        
     } else {
         console.log('No user is logged in');
-        // Additional logic if needed when no user is logged in
+        try {
+            const myTag = document.getElementById('/RESTRICTED');
+            if (myTag) {
+                window.location.replace("http://portunus.run.place/login");
+            }
+        } catch (error) {
+            console.log('Error:', error);
+        }   
     }
 });
 
