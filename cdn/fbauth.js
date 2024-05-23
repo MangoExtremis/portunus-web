@@ -41,6 +41,7 @@ if (loginButton) {
                 console.error(error);
     
                 // Animation
+                const submitBtn = document.getElementById("login")
                 document.getElementById("message").innerHTML = "<p class='error-message'>Login failed. Please try again.</p>";
                 document.getElementById("email").disabled = false;
                 document.getElementById("password").disabled = false;
