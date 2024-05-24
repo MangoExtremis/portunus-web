@@ -20,6 +20,7 @@ const auth = firebase.auth();
 try {
     const myTag = document.getElementById('/RESTRICTED');
     var user = firebase.auth().currentUser;
+
     if (user) {
         if (myTag) {
             if (firebase.auth().currentUser.displayName === "Null") {
@@ -62,12 +63,11 @@ try {
 
                 if (DisplayName) {
                     if (document.getElementById('agreeCheckbox').checked) {
-                        updateProfile(user, { displayName: DisplayName, photoURL: "https://portunus.run.place/favicon.ico" })
-                            .then(() => {
-                                window.location.replace("http://portunus.run.place/home");
-                            }).catch((error) => {
-                                console.log(error);
-                            });
+                        var userNow = firebase.auth().currentUser;
+                        userNow.updateProfile({
+                            displayName: DisplayName,
+                            photoURL: "https://portunus.run.place/favicon.ico"
+                        });
                     } else {
                         document.getElementById("message").innerHTML = "<p class='error-message'>You are required to agree to our Terms of Service and our Privacy Policy.</p>";
                     }
@@ -76,8 +76,6 @@ try {
                 }
             });
         }
-    } else {
-        window.location.replace("http://portunus.run.place/home");
     }
 } catch (error) {
     console.log('Error:', error);
