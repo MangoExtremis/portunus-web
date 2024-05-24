@@ -21,7 +21,21 @@ if (loginButton) {
     loginButton.addEventListener('click', () => {
         const email = document.getElementById("email").value;
         const password = document.getElementById("password").value;
-    
+
+        if (email) {
+
+        } else {
+            document.getElementById("message").innerHTML = "<p class='error-message'>Please fill in your email address.</p>";
+            return;
+        }
+
+        if (password) {
+
+        } else {
+            document.getElementById("message").innerHTML = "<p class='error-message'>Please fill in your password.</p>";
+            return;
+        }
+
         auth.signInWithEmailAndPassword(email, password)
             .then((userCredential) => {
                 document.getElementById("message").innerHTML = "<p class='success-message'>Login completed. Please wait.</p>";
