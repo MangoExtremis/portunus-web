@@ -34,6 +34,22 @@ try {
                     } else {
                         if (firebase.auth().currentUser.displayName === "") {
                             window.location.replace("http://portunus.run.place/updateprofile");
+                        } else {
+                            if (firebase.auth().currentUser.displayName === null) {
+                                window.location.replace("http://portunus.run.place/updateprofile");
+                            } else {
+                                if (firebase.auth().currentUser.displayName === nil) {
+                                    window.location.replace("http://portunus.run.place/updateprofile");
+                                } else {
+                                    if (firebase.auth().currentUser.displayName === Null) {
+                                        window.location.replace("http://portunus.run.place/updateprofile");
+                                    } else {
+                                        if (firebase.auth().currentUser.displayName === Nil) {
+                                            window.location.replace("http://portunus.run.place/updateprofile");
+                                        }
+                                    }
+                                }
+                            }
                         }
                     }
                 }
@@ -56,28 +72,26 @@ try {
 
 try {
     const updateprofile = document.getElementById('updateprofile');
-    if (user) {
-        if (updateprofile) {
-            updateprofile.addEventListener('click', () => {
-                const DisplayName = document.getElementById('updatedisplay').value
+    if (updateprofile) {
+        updateprofile.addEventListener('click', () => {
+            const DisplayName = document.getElementById('updatedisplay').value
 
-                if (DisplayName) {
-                    if (document.getElementById('agreeCheckbox').checked) {
-                        var userNow = firebase.auth().currentUser;
-                        userNow.updateProfile({
-                            displayName: DisplayName,
-                            photoURL: "https://portunus.run.place/favicon.ico"
-                        });
+            if (DisplayName) {
+                if (document.getElementById('agreeCheckbox').checked) {
+                    var userNow = firebase.auth().currentUser;
+                    userNow.updateProfile({
+                        displayName: DisplayName,
+                        photoURL: "https://portunus.run.place/favicon.ico"
+                    });
 
-                        window.location.replace("http://portunus.run.place/home");
-                    } else {
-                        document.getElementById("message").innerHTML = "<p class='error-message'>You are required to agree to our Terms of Service and our Privacy Policy.</p>";
-                    }
+                    window.location.replace("http://portunus.run.place/home");
                 } else {
-                    document.getElementById("message").innerHTML = "<p class='error-message'>Please set your DisplayName.</p>";
+                    document.getElementById("message").innerHTML = "<p class='error-message'>You are required to agree to our Terms of Service and our Privacy Policy.</p>";
                 }
-            });
-        }
+            } else {
+                document.getElementById("message").innerHTML = "<p class='error-message'>Please set your DisplayName.</p>";
+            }
+        });
     }
 } catch (error) {
     console.log('Error:', error);
