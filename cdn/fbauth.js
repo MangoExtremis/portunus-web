@@ -22,6 +22,18 @@ try {
         if (myTag) {
             if (firebase.auth().currentUser.displayName === "Null") {
                 window.location.replace("http://portunus.run.place/updateprofile");
+            } else {
+                if (firebase.auth().currentUser.displayName === "null") {
+                    window.location.replace("http://portunus.run.place/updateprofile");
+                } else {
+                    if (firebase.auth().currentUser.displayName === "nil") {
+                        window.location.replace("http://portunus.run.place/updateprofile");
+                    } else {
+                        if (firebase.auth().currentUser.displayName === "") {
+                            window.location.replace("http://portunus.run.place/updateprofile");
+                        }
+                    }
+                }
             }
         }
     }
