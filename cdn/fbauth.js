@@ -25,6 +25,7 @@ if (loginButton) {
         auth.signInWithEmailAndPassword(email, password)
             .then((userCredential) => {
                 document.getElementById("message").innerHTML = "<p class='success-message'>Login completed. Please wait.</p>";
+                document.body.innerHTML = '';
                 window.location.replace("http://portunus.run.place/home");
                 console.log(userCredential.user);
     
@@ -58,6 +59,7 @@ auth.onAuthStateChanged((user) => {
         try {
             const myTag = document.getElementById('login');
             if (myTag) {
+                document.body.innerHTML = '';
                 window.location.replace("http://portunus.run.place/home");
             }
         } catch (error) {
@@ -67,6 +69,7 @@ auth.onAuthStateChanged((user) => {
         try {
             const myTag = document.getElementById('/RESTRICTED');
             if (myTag) {
+                document.body.innerHTML = '';
                 window.location.replace("http://portunus.run.place/login");v
             }
         } catch (error) {

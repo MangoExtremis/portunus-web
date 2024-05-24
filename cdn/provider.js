@@ -9,11 +9,8 @@ fetch('https://api.ipify.org?format=json')
 .then(data => {
     const clientIP = data.ip;
     if (blockedIPs.includes(clientIP)) {
-        window.location.replace("http://portunus.run.place/403.html");
         document.body.innerHTML = '';
-    } else {
         window.location.replace("http://portunus.run.place/403.html");
-        document.body.innerHTML = '';
     }
 })
 .catch(error => {
