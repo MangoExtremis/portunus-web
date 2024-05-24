@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <title>Portunus - Department Browser</title>
     <meta name="description" content="Portunus's Departmental Browser">
@@ -93,11 +94,13 @@
             color: white;
             padding: 10px 0;
         }
+
         nav {
             background-color: #444;
             color: white;
             padding: 10px 0;
         }
+
         nav a {
             color: white;
             text-decoration: none;
@@ -114,6 +117,7 @@
         }
     </style>
 </head>
+
 <body>
     <nav>
         <a href="https://portunus.run.place/home">Home</a>
@@ -123,7 +127,8 @@
     <div class="container">
         <h1>Portunus - Portunus's Departmental Browser</h1>
         <div>
-            <p>This is Portunus's Departmental Browser. You may view all departments depending on your access levels.</p>
+            <p>This is Portunus's Departmental Browser. You may view all departments depending on your access levels.
+            </p>
         </div>
         <div><a href="https://portunus.run.place/cdn/banner.jpg">banner.jpg</a></div>
         <div>
@@ -153,11 +158,25 @@
             messagingSenderId: "858044349547",
             appId: "1:858044349547:web:31414f32c015176994052e"
         };
-        
-        
+
+        if (firebase) {
+
+        } else {
+            console.error('Failed to load user status.')
+            window.location.replace("http://portunus.run.place/home");
+        }
+
+
         firebase.initializeApp(firebaseConfig);
         const auth = firebase.auth();
-        
+
+        if (auth) {
+
+        } else {
+            console.error('Failed to load user status.')
+            window.location.replace("http://portunus.run.place/home");
+        }
+
         auth.onAuthStateChanged((user) => {
             if (user) {
                 console.log('User is logged in:', user);
@@ -168,18 +187,19 @@
                     }
                 } catch (error) {
                     console.log('Error:', error);
-                }        
+                }
             } else {
                 try {
                     const myTag = document.getElementById('/RESTRICTED');
                     if (myTag) {
-                        window.location.replace("http://portunus.run.place/login");v
+                        window.location.replace("http://portunus.run.place/login"); v
                     }
                 } catch (error) {
                     console.log('Error:', error);
-                }   
+                }
             }
         });
-        </script>
+    </script>
 </body>
+
 </html>
