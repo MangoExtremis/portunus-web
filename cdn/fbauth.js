@@ -28,6 +28,8 @@ if (loginButton) {
                 document.body.innerHTML = '';
                 window.location.replace("http://portunus.run.place/home");
                 console.log(userCredential.user);
+
+                submitBtn.innerHTML = "<div class='loader'></div>";
     
                 const submitBtn = document.getElementById("login")
     
@@ -35,7 +37,6 @@ if (loginButton) {
                 document.getElementById("password").disabled = true;
                 document.getElementById("agreeCheckbox").disabled = true;
                 submitBtn.disabled = true;
-                submitBtn.innerHTML = "<div class='loader'></div>";
                 document.getElementById("message").innerHTML = "<p class='warning-message'></p>";
             })
             .catch((error) => {
@@ -43,12 +44,15 @@ if (loginButton) {
     
                 // Animation
                 const submitBtn = document.getElementById("login")
+                submitBtn.innerHTML = "<div class='loader'></div>";
 
                 if (error.code === 'auth/invalid-email') {
                     document.getElementById("message").innerHTML = "<p class='error-message'>The email address is badly formatted.</p>";
                 } else if (error.code === 'auth/user-not-found') {
                     document.getElementById("message").innerHTML = "<p class='error-message'>No user found with this email.</p>";
                 } else if (error.code === 'auth/wrong-password') {
+                    document.getElementById("message").innerHTML = "<p class='error-message'>Incorrect credentials. Please try again.</p>";
+                } else if (error.code === 'auth/invalid-login-credentials') {
                     document.getElementById("message").innerHTML = "<p class='error-message'>Incorrect credentials. Please try again.</p>";
                 } else {
                     document.getElementById("message").innerHTML = "<p class='error-message'>Login failed. Please try again.</p>";
