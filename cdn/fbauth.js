@@ -43,7 +43,16 @@ if (loginButton) {
     
                 // Animation
                 const submitBtn = document.getElementById("login")
-                document.getElementById("message").innerHTML = "<p class='error-message'>Login failed. Please try again.</p>";
+
+                if (error.code === 'auth/invalid-email') {
+                    document.getElementById("message").innerHTML = "<p class='error-message'>The email address is badly formatted.</p>";
+                } else if (error.code === 'auth/user-not-found') {
+                    document.getElementById("message").innerHTML = "<p class='error-message'>No user found with this email.</p>";
+                } else if (error.code === 'auth/wrong-password') {
+                    document.getElementById("message").innerHTML = "<p class='error-message'>Incorrect credentials. Please try again.</p>";
+                } else {
+                    document.getElementById("message").innerHTML = "<p class='error-message'>Login failed. Please try again.</p>";
+                }
                 document.getElementById("email").disabled = false;
                 document.getElementById("password").disabled = false;
                 document.getElementById("agreeCheckbox").disabled = false;
