@@ -17,48 +17,6 @@ const firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 const auth = firebase.auth();
 
-try {
-    const myTag = document.getElementById('/RESTRICTED');
-    var user = firebase.auth().currentUser;
-
-    if (user) {
-        if (myTag) {
-            if (firebase.auth().currentUser.displayName === "Null") {
-                window.location.replace("http://portunus.run.place/updateprofile");
-            } else {
-                if (firebase.auth().currentUser.displayName === "null") {
-                    window.location.replace("http://portunus.run.place/updateprofile");
-                } else {
-                    if (firebase.auth().currentUser.displayName === "nil") {
-                        window.location.replace("http://portunus.run.place/updateprofile");
-                    } else {
-                        if (firebase.auth().currentUser.displayName === "") {
-                            window.location.replace("http://portunus.run.place/updateprofile");
-                        } else {
-                            if (firebase.auth().currentUser.displayName === null) {
-                                window.location.replace("http://portunus.run.place/updateprofile");
-                            } else {
-                                if (firebase.auth().currentUser.displayName === nil) {
-                                    window.location.replace("http://portunus.run.place/updateprofile");
-                                } else {
-                                    if (firebase.auth().currentUser.displayName === Null) {
-                                        window.location.replace("http://portunus.run.place/updateprofile");
-                                    } else {
-                                        if (firebase.auth().currentUser.displayName === Nil) {
-                                            window.location.replace("http://portunus.run.place/updateprofile");
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        }
-    }
-} catch (error) {
-    console.log('Error:', error);
-}
 
 try {
     const displayName = document.getElementById('displayName');
@@ -217,4 +175,44 @@ if (logoutButton) {
             console.error(error);
         });
     });
+}
+
+try {
+    const myTag = document.getElementById('/RESTRICTED');
+    var user = firebase.auth().currentUser;
+    if (myTag) {
+        if (firebase.auth().currentUser.displayName === "Null") {
+            window.location.replace("http://portunus.run.place/updateprofile");
+        } else {
+            if (firebase.auth().currentUser.displayName === "null") {
+                window.location.replace("http://portunus.run.place/updateprofile");
+            } else {
+                if (firebase.auth().currentUser.displayName === "nil") {
+                    window.location.replace("http://portunus.run.place/updateprofile");
+                } else {
+                    if (firebase.auth().currentUser.displayName === "") {
+                        window.location.replace("http://portunus.run.place/updateprofile");
+                    } else {
+                        if (firebase.auth().currentUser.displayName === null) {
+                            window.location.replace("http://portunus.run.place/updateprofile");
+                        } else {
+                            if (firebase.auth().currentUser.displayName === nil) {
+                                window.location.replace("http://portunus.run.place/updateprofile");
+                            } else {
+                                if (firebase.auth().currentUser.displayName === Null) {
+                                    window.location.replace("http://portunus.run.place/updateprofile");
+                                } else {
+                                    if (firebase.auth().currentUser.displayName === Nil) {
+                                        window.location.replace("http://portunus.run.place/updateprofile");
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+} catch (error) {
+    console.log('Error:', error);
 }
