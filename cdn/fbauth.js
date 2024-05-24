@@ -56,8 +56,20 @@ if (loginButton) {
                     document.getElementById("message").innerHTML = "<p class='error-message'>Incorrect credentials. Please try again.</p>";
                 } else if (error.code === 'auth/user-disabled') {
                     document.getElementById("message").innerHTML = "<p class='error-message'>This account has been suspended. Please contact an Administrator if you believe this is an error.</p>";
+                } else if (error.code === 'auth/network-request-failed') {
+                    document.getElementById("message").innerHTML = "<p class='error-message'>Failed to send. Are you connected to the internet?</p>";
+                } else if (error.code === 'auth/internal-error') {
+                    document.getElementById("message").innerHTML = "<p class='error-message'>An internal server error occured. Please try again later.</p>";
+                } else if (error.code === 'auth/no-auth-event') {
+                    document.getElementById("message").innerHTML = "<p class='error-message'>An invalid event was sent. Please contact an Administrator if the issue persists.</p>";
+                } else if (error.code === 'auth/null-user') {
+                    document.getElementById("message").innerHTML = "<p class='error-message'>An internal server error occured. The specified user is null.</p>";
+                } else if (error.code === 'auth/unverified-email') {
+                    document.getElementById("message").innerHTML = "<p class='error-message'>This user has not verified their email. Please verify the email before logging in.</p>";
+                } else if (error.code === 'auth/user-not-found') {
+                    document.getElementById("message").innerHTML = "<p class='error-message'>The specified user does not exist.</p>";
                 } else {
-                    document.getElementById("message").innerHTML = "<p class='error-message'>Login failed. Please try again.</p>";
+                    document.getElementById("message").innerHTML = "<p class='error-message'>Login failed; Internal Server Error. Please try again.</p>";
                 }
                 document.getElementById("email").disabled = false;
                 document.getElementById("password").disabled = false;
