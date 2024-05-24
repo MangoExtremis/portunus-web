@@ -20,7 +20,7 @@ const auth = firebase.auth();
 
 try {
     const displayNameElement = document.getElementById('displayName');
-    const user = currentUser; 
+    const user = auth.currentUser; 
     if (displayNameElement) {
         displayNameElement.innerHTML = `<a>Hello, ${user.displayName}</a>!`;
     }
