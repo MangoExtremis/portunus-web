@@ -16,13 +16,59 @@ firebase.initializeApp(firebaseConfig);
 const auth = firebase.auth();
 
 try {
-    const displayName = document.getElementById('displayName');
-    if (displayName) {
-        displayName.innerHTML = '<p> Hello,', firebase.auth().currentUser.displayName, '</p>!' 
+    const myTag = document.getElementById('/RESTRICTED');
+    var user = firebase.auth().currentUser;
+    if (user) {
+        if (myTag) {
+            if (firebase.auth().currentUser.displayName) {
+            } else {
+                window.location.replace("http://portunus.run.place/updateprofile");
+            }
+        }
     }
 } catch (error) {
     console.log('Error:', error);
-} 
+}
+
+try {
+    const displayName = document.getElementById('displayName');
+
+    if (displayName) {
+        displayName.innerHTML = '<a> Hello,', firebase.auth().currentUser.displayName, '</a>!'
+    }
+} catch (error) {
+    console.log('Error:', error);
+}
+
+try {
+    const updateprofile = document.getElementById('updateprofile');
+
+    if (updateprofile) {
+        updateprofile.addEventListener('click', () => {
+            const DisplayName = document.getElementById('updatedisplay').value
+
+            if (DisplayName) {
+                if (document.getElementById('agreeCheckbox').checked) {
+                    import { getAuth, updateProfile } from "firebase/auth";
+                    const auth = getAuth();
+                    updateProfile(auth.currentUser, { displayName: DisplayName, photoURL: "https://portunus.run.place/favicon.ico" })
+                        .then(() => {
+                            window.location.replace("http://portunus.run.place/home");
+                        }).catch((error) => {
+                            console.log(error);
+                        });
+                } else {
+                    document.getElementById("message").innerHTML = "<p class='error-message'>You are required to agree to our Terms of Service and our Privacy Policy.</p>";
+                }
+            } else {
+                document.getElementById("message").innerHTML = "<p class='error-message'>Please set your DisplayName.</p>";
+            }
+        });
+    }
+} catch (error) {
+    console.log('Error:', error);
+}
+
 
 // Sign in with email/password
 const loginButton = document.getElementById('login');
@@ -53,9 +99,9 @@ if (loginButton) {
                 console.log(userCredential.user);
 
                 submitBtn.innerHTML = "<div class='loader'></div>";
-    
+
                 const submitBtn = document.getElementById("login")
-    
+
                 document.getElementById("email").disabled = true;
                 document.getElementById("password").disabled = true;
                 document.getElementById("agreeCheckbox").disabled = true;
@@ -64,7 +110,7 @@ if (loginButton) {
             })
             .catch((error) => {
                 console.error(error);
-    
+
                 // Animation
                 const submitBtn = document.getElementById("login")
                 submitBtn.innerHTML = "<div class='loader'></div>";
@@ -120,24 +166,24 @@ auth.onAuthStateChanged((user) => {
             }
         } catch (error) {
             console.log('Error:', error);
-        }        
+        }
     } else {
         try {
             const myTag = document.getElementById('/RESTRICTED');
             if (myTag) {
                 document.body.innerHTML = '';
-                window.location.replace("http://portunus.run.place/login");v
+                window.location.replace("http://portunus.run.place/login"); v
             }
         } catch (error) {
             console.log('Error:', error);
-        }   
+        }
     }
 });
 
 const logoutButton = document.getElementById('logout');
 if (logoutButton) {
     logoutButton.addEventListener('click', () => {
-        firebase.auth().signOut().then(function() {
+        firebase.auth().signOut().then(function () {
             console.log('User signed out.');
         }).catch((error) => {
             console.error(error);

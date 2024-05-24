@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Portunus - Update Profile</title>
+  <meta name="description" content="Update your profile.">
+  <meta name="keywords" content="Portunus">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="/favicon.ico">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f2f2f2;
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+    }
+
+    .loader {
+      border: 4px solid rgba(0, 0, 0, 0.1);
+      border-left: 4px solid #4CAF50;
+      border-radius: 50%;
+      width: 20px;
+      height: 20px;
+      animation: spin 1s linear infinite;
+      display: inline-block;
+    }
+
+    @keyframes spin {
+      0% {
+        transform: rotate(0deg);
+      }
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+
+    .container {
+      max-width: 400px;
+      margin: 0 auto;
+      padding: 20px;
+      background-color: #fff;
+      border-radius: 5px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      text-align: center;
+    }
+
+    h2 {
+      text-align: center;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    .form-group label,
+    .form-group input,
+    .form-group .checkbox-label {
+      display: block;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .form-group input[type="checkbox"] {
+      display: inline-block;
+      margin-right: 5px;
+    }
+
+    .form-group .checkbox-label {
+      display: inline-block;
+      vertical-align: middle;
+    }
+
+    .error-message {
+      color: red;
+      margin-top: 10px;
+    }
+
+    .success-message {
+      color: green;
+      margin-top: 10px;
+    }
+
+    .warning-message {
+      color: orange;
+      margin-top: 10px;
+    }
+
+    .submit-btn {
+      width: 100%;
+      padding: 10px;
+      background-color: #4CAF50;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    .background {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: url('/images/banner.jpg');
+      /* Replace with your background image URL */
+      background-size: cover;
+      background-position: center;
+      z-index: -1;
+      transition: transform 0.1s ease-out;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="background" id="background"></div>
+  <div class="container">
+    <h1>Update Your Profile</h1>
+    <div><b>We have made some changes to PortunusWeb, which requires you to update your profile. Please follow all steps below accordingly.</b></div>
+    <form id="loginForm">
+      <div class="form-group">
+        <label for="updatedisplay">DISPLAY NAME</label>
+        <input type="text" id="updatedisplay" name="updatedisplay" required autocomplete="updatedisplay">
+      </div>
+      <div class="form-group">
+        <input type="checkbox" id="agreeCheckbox" name="agreeCheckbox" required>
+        <label for="agreeCheckbox" class="checkbox-label">I am not a robot and I agree to the Portunus Terms of Service and Privacy Policy.</label>
+      </div>
+      <div id="message" class="error-message"></div>
+      <button id="updateprofile" type="button" class="submit-btn">Update Profile</button>
+      <div id="message" class="warning-message"></div>
+    </form>
+  </div>
+
+  <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-auth-compat.js"></script>  
+  <script src="/cdn/fbauth.js"></script>
+
+  <script src="/cdn/provider.js"></script>
+
+  <div id="/RESTRICTED"></div>
+
+  <script>
+    document.getElementById("message").innerHTML = "<p class='warning-message'></p>";
+
+    // Mouse move background effect
+    document.addEventListener('mousemove', function (e) {
+      const background = document.getElementById('background');
+      const moveX = (e.clientX / window.innerWidth) * 15 - 30;
+      const moveY = (e.clientY / window.innerHeight) * 15 - 30;
+      background.style.transform = `translate(${moveX}px, ${moveY}px) scale(1.1)`;
+    });
+  </script>
+</body>
+</html>
