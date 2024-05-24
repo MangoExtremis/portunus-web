@@ -53,27 +53,29 @@ try {
 
 try {
     const updateprofile = document.getElementById('updateprofile');
+    if (user) {
+        if (updateprofile) {
+            updateprofile.addEventListener('click', () => {
+                const DisplayName = document.getElementById('updatedisplay').value
 
-    if (updateprofile) {
-        updateprofile.addEventListener('click', () => {
-            const DisplayName = document.getElementById('updatedisplay').value
-
-            if (DisplayName) {
-                if (document.getElementById('agreeCheckbox').checked) {
-                    const auth = firebase.auth();
-                    updateProfile(auth.currentUser, { displayName: DisplayName, photoURL: "https://portunus.run.place/favicon.ico" })
-                        .then(() => {
-                            window.location.replace("http://portunus.run.place/home");
-                        }).catch((error) => {
-                            console.log(error);
-                        });
+                if (DisplayName) {
+                    if (document.getElementById('agreeCheckbox').checked) {
+                        updateProfile(user, { displayName: DisplayName, photoURL: "https://portunus.run.place/favicon.ico" })
+                            .then(() => {
+                                window.location.replace("http://portunus.run.place/home");
+                            }).catch((error) => {
+                                console.log(error);
+                            });
+                    } else {
+                        document.getElementById("message").innerHTML = "<p class='error-message'>You are required to agree to our Terms of Service and our Privacy Policy.</p>";
+                    }
                 } else {
-                    document.getElementById("message").innerHTML = "<p class='error-message'>You are required to agree to our Terms of Service and our Privacy Policy.</p>";
+                    document.getElementById("message").innerHTML = "<p class='error-message'>Please set your DisplayName.</p>";
                 }
-            } else {
-                document.getElementById("message").innerHTML = "<p class='error-message'>Please set your DisplayName.</p>";
-            }
-        });
+            });
+        }
+    } else {
+        window.location.replace("http://portunus.run.place/home");
     }
 } catch (error) {
     console.log('Error:', error);
