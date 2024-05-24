@@ -142,6 +142,16 @@ auth.onAuthStateChanged((user) => {
         } catch (error) {
             console.log('Error:', error);
         }
+
+        try {
+            const displayNameElement = document.getElementById('displayName');
+            const user = auth.currentUser; 
+            if (displayNameElement) {
+                displayNameElement.innerHTML = `<a>Hello, ${user.displayName}</a>!`;
+            }
+        } catch (error) {
+            console.log('Error:', error);
+        }
     } else {
         try {
             const myTag = document.getElementById('/RESTRICTED');
@@ -164,15 +174,4 @@ if (logoutButton) {
             console.error(error);
         });
     });
-}
-
-
-try {
-    const displayNameElement = document.getElementById('displayName');
-    const user = auth.currentUser; 
-    if (displayNameElement) {
-        displayNameElement.innerHTML = `<a>Hello, ${user.displayName}</a>!`;
-    }
-} catch (error) {
-    console.log('Error:', error);
 }
