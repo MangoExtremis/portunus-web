@@ -141,42 +141,44 @@
 
     <div id="/RESTRICTED"></div>
     <script>
-    const firebaseConfig = {
-        apiKey: "AIzaSyB6bb3PcRQmnfGkx9ef00KMJ9XsIi57170",
-        authDomain: "portunus-web.firebaseapp.com",
-        projectId: "portunus-web",
-        storageBucket: "portunus-web.appspot.com",
-        messagingSenderId: "858044349547",
-        appId: "1:858044349547:web:31414f32c015176994052e"
-    };
-    
-    
-    firebase.initializeApp(firebaseConfig);
-    const auth = firebase.auth();
-    
-    auth.onAuthStateChanged((user) => {
-        if (user) {
-            console.log('User is logged in:', user);
-            try {
-                const myTag = document.getElementById('login');
-                if (myTag) {
-                    window.location.replace("http://portunus.run.place/home");
+        const firebaseConfig = {
+            apiKey: "AIzaSyB6bb3PcRQmnfGkx9ef00KMJ9XsIi57170",
+            authDomain: "portunus-web.firebaseapp.com",
+            projectId: "portunus-web",
+            storageBucket: "portunus-web.appspot.com",
+            messagingSenderId: "858044349547",
+            appId: "1:858044349547:web:31414f32c015176994052e"
+        };
+
+
+        firebase.initializeApp(firebaseConfig);
+        const auth = firebase.auth();
+
+        auth.onAuthStateChanged((user) => {
+            if (user) {
+                console.log('User is logged in:', user);
+                try {
+                    const myTag = document.getElementById('login');
+                    if (myTag) {
+                        window.location.replace("http://portunus.run.place/home");
+                    }
+                } catch (error) {
+                    console.log('Error:', error);
                 }
-            } catch (error) {
-                console.log('Error:', error);
-            }        
-        } else {
-            try {
-                const myTag = document.getElementById('/RESTRICTED');
-                if (myTag) {
-                    window.location.replace("http://portunus.run.place/login");v
+            } else {
+                try {
+                    const myTag = document.getElementById('/RESTRICTED');
+                    if (myTag) {
+                        window.location.replace("http://portunus.run.place/login"); v
+                    }
+                } catch (error) {
+                    console.log('Error:', error);
                 }
-            } catch (error) {
-                console.log('Error:', error);
-            }   
-        }
-    });
+            }
+        });
     </script>
+
+    <script src="/cdn/provider.js"></script>
 </body>
 
 </html>
