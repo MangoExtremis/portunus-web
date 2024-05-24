@@ -54,6 +54,8 @@ if (loginButton) {
                     document.getElementById("message").innerHTML = "<p class='error-message'>Incorrect credentials. Please try again.</p>";
                 } else if (error.code === 'auth/invalid-login-credentials') {
                     document.getElementById("message").innerHTML = "<p class='error-message'>Incorrect credentials. Please try again.</p>";
+                } else if (error.code === 'auth/user-disabled') {
+                    document.getElementById("message").innerHTML = "<p class='error-message'>This account has been suspended. Please contact an Administrator if you believe this is an error.</p>";
                 } else {
                     document.getElementById("message").innerHTML = "<p class='error-message'>Login failed. Please try again.</p>";
                 }
