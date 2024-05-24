@@ -20,8 +20,7 @@ try {
     var user = firebase.auth().currentUser;
     if (user) {
         if (myTag) {
-            if (firebase.auth().currentUser.displayName) {
-            } else {
+            if (firebase.auth().currentUser.displayName === "Null") {
                 window.location.replace("http://portunus.run.place/updateprofile");
             }
         }
