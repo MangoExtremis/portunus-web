@@ -72,6 +72,8 @@ if (loginButton) {
                     document.getElementById("message").innerHTML = "<p class='error-message'>You are sending too many requests. Please try again later.</p>";
                 } else if (error.code === 'auth/timeout') {
                     document.getElementById("message").innerHTML = "<p class='error-message'>You have exceeded the operation timeout. Please try again.</p>";
+                } else if (error.code === 'auth/quota-exceeded') {
+                    document.getElementById("message").innerHTML = "<p class='error-message'>This operation is temporarily disabled. Please try again later or contact an Administrator.</p>";
                 } else {
                     document.getElementById("message").innerHTML = "<p class='error-message'>Login failed; Internal Server Error. Please try again.</p>";
                 }
