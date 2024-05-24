@@ -68,6 +68,10 @@ if (loginButton) {
                     document.getElementById("message").innerHTML = "<p class='error-message'>This user has not verified their email. Please verify the email before logging in.</p>";
                 } else if (error.code === 'auth/user-not-found') {
                     document.getElementById("message").innerHTML = "<p class='error-message'>The specified user does not exist.</p>";
+                } else if (error.code === 'auth/too-many-requests') {
+                    document.getElementById("message").innerHTML = "<p class='error-message'>You are sending too many requests. Please try again later.</p>";
+                } else if (error.code === 'auth/timeout') {
+                    document.getElementById("message").innerHTML = "<p class='error-message'>You have exceeded the operation timeout. Please try again.</p>";
                 } else {
                     document.getElementById("message").innerHTML = "<p class='error-message'>Login failed; Internal Server Error. Please try again.</p>";
                 }
