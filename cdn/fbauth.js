@@ -1,5 +1,6 @@
 const { initializeApp } = firebase;
-const { getAuth, signInWithPopup, GoogleAuthProvider, signOut, updateProfile } = firebase.auth;
+const { getAuth, signInWithPopup, GoogleAuthProvider, signOut } = firebase.auth;
+import { updateProfile } from "firebase/auth"
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
