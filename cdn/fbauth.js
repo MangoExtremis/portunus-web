@@ -60,7 +60,7 @@ try {
 
             if (DisplayName) {
                 if (document.getElementById('agreeCheckbox').checked) {
-                    const auth = getAuth();
+                    const auth = firebase.auth();
                     updateProfile(auth.currentUser, { displayName: DisplayName, photoURL: "https://portunus.run.place/favicon.ico" })
                         .then(() => {
                             window.location.replace("http://portunus.run.place/home");
