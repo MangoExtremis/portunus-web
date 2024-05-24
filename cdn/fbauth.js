@@ -112,6 +112,15 @@ auth.onAuthStateChanged((user) => {
         } catch (error) {
             console.log('Error:', error);
         }        
+
+        try {
+            const displayName = document.getElementById('displayName');
+            if (displayName) {
+                displayName.innerHTML = '<p> Hello,', firebase.auth().currentUser.displayName, '</p>!' 
+            }
+        } catch (error) {
+            console.log('Error:', error);
+        } 
     } else {
         try {
             const myTag = document.getElementById('/RESTRICTED');
