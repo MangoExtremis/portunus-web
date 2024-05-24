@@ -1,5 +1,5 @@
 const { initializeApp } = firebase;
-const { getAuth, signInWithPopup, GoogleAuthProvider, signOut } = firebase.auth;
+const { getAuth, signInWithPopup, GoogleAuthProvider, signOut, updateProfile } = firebase.auth;
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
@@ -48,7 +48,6 @@ try {
 
             if (DisplayName) {
                 if (document.getElementById('agreeCheckbox').checked) {
-                    import { getAuth, updateProfile } from "firebase/auth";
                     const auth = getAuth();
                     updateProfile(auth.currentUser, { displayName: DisplayName, photoURL: "https://portunus.run.place/favicon.ico" })
                         .then(() => {
