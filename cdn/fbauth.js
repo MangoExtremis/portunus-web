@@ -68,6 +68,8 @@ try {
                             displayName: DisplayName,
                             photoURL: "https://portunus.run.place/favicon.ico"
                         });
+
+                        window.location.replace("http://portunus.run.place/home");
                     } else {
                         document.getElementById("message").innerHTML = "<p class='error-message'>You are required to agree to our Terms of Service and our Privacy Policy.</p>";
                     }
