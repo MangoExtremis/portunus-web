@@ -19,11 +19,12 @@ const auth = firebase.auth();
 
 
 try {
-    const displayName = document.getElementById('displayName');
-    const user = auth.currentUser;
-
-    if (displayName) {
-        displayName.innerHTML = `<a>Hello, ${user.displayName}</a>!`;
+    const displayNameElement = document.getElementById('displayName');
+    const user = currentUser; 
+    if (user && displayNameElement) {
+        displayNameElement.innerHTML = `<a>Hello, ${user.displayName}</a>!`;
+    } else if (!user) {
+        console.log('No user is signed in.');
     }
 } catch (error) {
     console.log('Error:', error);
