@@ -159,14 +159,6 @@
             appId: "1:858044349547:web:31414f32c015176994052e"
         };
 
-        if (firebase) {
-
-        } else {
-            console.error('Failed to load user status.')
-            window.location.replace("http://portunus.run.place/home");
-        }
-
-
         firebase.initializeApp(firebaseConfig);
         const auth = firebase.auth();
 
