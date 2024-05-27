@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Portunus Web Login</title>
-  <meta name="description" content="Portunus's Login Page">
+  <title>Portunus - Forgot Password</title>
+  <meta name="description" content="Portunus's Forgot Password Page">
   <meta name="keywords" content="Portunus">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="icon" href="/favicon.ico">
@@ -118,28 +118,21 @@
 <body>
   <div class="background" id="background"></div>
   <div class="container">
-    <h1>Authentication Required</h1>
+    <h1>Forgot Password</h1>
     <form id="loginForm">
       <div class="form-group">
         <label for="email">EMAIL</label>
         <input type="text" id="email" name="email" required autocomplete="email">
       </div>
       <div class="form-group">
-        <label for="password">PASSWORD</label>
-        <input type="password" id="password" name="password" required autocomplete="current-password">
-      </div>
-      <div class="form-group">
         <input type="checkbox" id="agreeCheckbox" name="agreeCheckbox" required>
         <label for="agreeCheckbox" class="checkbox-label">I am not a robot.</label>
       </div>
       <div id="message" class="error-message"></div>
-      <button id="login" type="button" class="submit-btn">Login</button>
+      <button id="forgotpassword" type="button" class="submit-btn">Send Email</button>
       <div id="message" class="warning-message"></div>
-      <div><body><a href="https://portunus.run.place/forgotpassword">Forgot Password</a></body></div>
     </form>
   </div>
-
-  <div id="login"></div>
 
   <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-auth-compat.js"></script>  

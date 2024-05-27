@@ -221,3 +221,49 @@ if (logoutButton) {
     });
 }
 
+const forgotpasswordButton = document.getElementById('forgotpassword');
+if (forgotpasswordButton) {
+    forgotpasswordButton.addEventListener('click', () => {
+        const agreeCheckbox = document.getElementById('agreeCheckbox');
+        const auth = firebase.auth();
+        const emailAddress = document.getElementById('email').value;
+
+        if (agreeCheckbox && agreeCheckbox.checked) {
+            auth.sendPasswordResetEmail(emailAddress).then(() => {
+                document.getElementById("message").innerHTML = "<p class='success-message'>Email sent. Check your Email for a reset password link.</p>";
+                forgotpasswordButton.innerHTML = "<div class='loader'></div>";
+                document.getElementById("email").disabled = true;
+                document.getElementById("agreeCheckbox").disabled = true;
+                forgotpasswordButton.disabled = true;
+            }).catch((error) => {
+                document.getElementById("message").innerHTML = `<p class='error-message'>An internal error occured. Error: ${error.message}</p>`;
+                document.getElementById("email").disabled = false;
+                document.getElementById("agreeCheckbox").disabled = false;
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = "Login";
+            });
+        } else {
+            document.getElementById("message").innerHTML = "<p class='error-message'>You must confirm you are not a robot.</p>";
+        }
+    });
+}
+
+const forgotpasswordButton = document.getElementById('forgotpassword');
+if (forgotpasswordButton) {
+    forgotpasswordButton.addEventListener('click', () => {
+        const agreeCheckbox = document.getElementById('agreeCheckbox');
+        const emailAddress = document.getElementById('email').value; // Assuming you have an input field with id 'email'
+        
+        if (agreeCheckbox && agreeCheckbox.checked) {
+            const auth = firebase.auth();
+
+            auth.sendPasswordResetEmail(emailAddress).then(() => {
+                document.getElementById("message").innerHTML = "<p class='success-message'>Email sent. Check your Email for a reset password link.</p>";
+            }).catch((error) => {
+                document.getElementById("message").innerHTML = `<p class='error-message'>Error: ${error.message}</p>`;
+            });
+        } else {
+            document.getElementById("message").innerHTML = "<p class='error-message'>You must agree to the terms before proceeding.</p>";
+        }
+    });
+}
