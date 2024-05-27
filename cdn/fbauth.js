@@ -239,8 +239,8 @@ if (forgotpasswordButton) {
                 document.getElementById("message").innerHTML = `<p class='error-message'>An internal error occured. Error: ${error.message}</p>`;
                 document.getElementById("email").disabled = false;
                 document.getElementById("agreeCheckbox").disabled = false;
-                submitBtn.disabled = false;
-                submitBtn.innerHTML = "Send Email";
+                forgotpasswordButton.disabled = false;
+                forgotpasswordButton.innerHTML = "Send Email";
             });
         } else {
             document.getElementById("message").innerHTML = "<p class='error-message'>You must confirm you are not a robot.</p>";
