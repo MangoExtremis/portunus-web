@@ -247,23 +247,3 @@ if (forgotpasswordButton) {
         }
     });
 }
-
-const forgotpasswordButton = document.getElementById('forgotpassword');
-if (forgotpasswordButton) {
-    forgotpasswordButton.addEventListener('click', () => {
-        const agreeCheckbox = document.getElementById('agreeCheckbox');
-        const emailAddress = document.getElementById('email').value; // Assuming you have an input field with id 'email'
-        
-        if (agreeCheckbox && agreeCheckbox.checked) {
-            const auth = firebase.auth();
-
-            auth.sendPasswordResetEmail(emailAddress).then(() => {
-                document.getElementById("message").innerHTML = "<p class='success-message'>Email sent. Check your Email for a reset password link.</p>";
-            }).catch((error) => {
-                document.getElementById("message").innerHTML = `<p class='error-message'>Error: ${error.message}</p>`;
-            });
-        } else {
-            document.getElementById("message").innerHTML = "<p class='error-message'>You must agree to the terms before proceeding.</p>";
-        }
-    });
-}
