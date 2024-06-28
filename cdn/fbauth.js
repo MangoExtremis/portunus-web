@@ -118,6 +118,10 @@ if (loginButton) {
                     document.getElementById("message").innerHTML = "<p class='error-message'>You have exceeded the operation timeout. Please try again.</p>";
                 } else if (error.code === 'auth/quota-exceeded') {
                     document.getElementById("message").innerHTML = "<p class='error-message'>This operation is temporarily disabled. Please try again later or contact an Administrator.</p>";
+                } else if (error.code === 'auth/admin-restricted-operation') {
+                    document.getElementById("message").innerHTML = "<p class='error-message'>This operation only for an Administrator.</p>";
+                } else if (error.code === 'auth/argument-error') {
+                    document.getElementById("message").innerHTML = "<p class='error-message'>An argument error occured. Please try again and ensure all fields are filled out.</p>";
                 } else {
                     document.getElementById("message").innerHTML = "<p class='error-message'>Login failed; Internal Server Error. Please try again.</p>";
                 }
